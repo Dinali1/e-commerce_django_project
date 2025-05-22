@@ -1,0 +1,40 @@
+[
+  {
+    "model": "apps.product",
+    "pk": 1,
+    "fields": {
+      "slug": "1",
+      "main_image": "products/drone2_07pdr3C.jpg",
+      "name": "Drone",
+      "price": "250.00",
+      "quantity": 3,
+      "description": "The fastest and comfort",
+      "reviews": "⭐️⭐️⭐️",
+      "video": "",
+      "created_at": "2025-05-02T07:06:20.784Z",
+      "discount_price": null,
+      "attribute_id": 2,
+      "seller_id": 1,
+      "category": 1
+    }
+  },
+  {
+    "model": "apps.product",
+    "pk": 2,
+    "fields": {
+      "slug": "wrestling",
+      "main_image": "products/barba.jpg",
+      "name": "Wrestling",
+      "price": "300.00",
+      "quantity": 2,
+      "description": "Comfort",
+      "reviews": "🌟🌟🌟🌟🌟🌟🌟",
+      "video": "",
+      "created_at": "2025-05-06T07:31:43.488Z",
+      "discount_price": "220.00",
+      "attribute_id": 2,
+      "seller_id": 2,
+      "category": 2
+    }
+  }
+]

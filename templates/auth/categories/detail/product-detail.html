@@ -1,0 +1,1508 @@
+{#{% extends 'auth/100k.uz.html' %}#}
+{#{% load humanize %}#}
+{#{% block base %}#}
+{#    <main class="client-template">#}
+{#        <section class="main">#}
+{#            <div id="notifications-container"></div>#}
+{##}
+{#            <div class="container py-3">#}
+{#                <div class="row align-items-center">#}
+{#                    <div class="col my-3 pr-3">#}
+{#                        <h1 class="h4 font-weight-bold mb-0">Bolalar uchun LCD planshet</h1>#}
+{#                    </div>#}
+{#                    <div class="col-auto my-3 text-right">#}
+{#                        <strong data-price="30000" id="productPrice" class="position-price1">#}
+{#                            30,000 so'm#}
+{#                        </strong>#}
+{#                        <div class="text-warning">#}
+{#                            <i class="fa fa-star"></i>#}
+{#                            <i class="fa fa-star"></i>#}
+{#                            <i class="fa fa-star"></i>#}
+{#                            <i class="fa fa-star"></i>#}
+{#                            <i class="fa fa-star"></i>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <form id="orderForm" method="POST" action="/create-order">#}
+{#                    <input type="hidden" name="_token" value="dUgJk0eHy76uFqrJNes4VB47ZrH6lWWSdv6t7FAj">#}
+{#                    <div class="row">#}
+{#                        <div class="col-md-6 mb-4">#}
+{#                            <div class="owl-carousel owl-theme content_linear_card_body_indicators owl-loaded owl-drag">#}
+{##}
+{##}
+{#                                <div class="owl-stage-outer">#}
+{#                                    <div class="owl-stage"#}
+{#                                         style="transform: translate3d(-1372px, 0px, 0px); transition: all; width: 5488px;">#}
+{#                                        {% for image in images %}#}
+{#                                            <div class="owl-item active" style="width: 686px;">#}
+{#                                                <div class="item">#}
+{#                                                    <img loading="lazy" class=" lazyloaded" style=" width:400px; height:400px;"#}
+{#                                                         src="{{ image.image.url }}"#}
+{#                                                         data-src=""#}
+{#                                                         alt="{{ product.name }}">#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        {% endfor %}#}
+{##}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="owl-nav disabled">#}
+{#                                    <button type="button" role="presentation" class="owl-prev"><span#}
+{#                                            aria-label="Previous">‹</span></button>#}
+{#                                    <button type="button" role="presentation" class="owl-next"><span#}
+{#                                            aria-label="Next">›</span></button>#}
+{#                                </div>#}
+{#                                <div class="owl-dots">#}
+{#                                    <button role="button" class="owl-dot active"><span></span></button>#}
+{#                                    <button role="button" class="owl-dot"><span></span></button>#}
+{#                                    <button role="button" class="owl-dot"><span></span></button>#}
+{#                                    <button role="button" class="owl-dot"><span></span></button>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div id="orderFormSection" class="col-md-6 pl-md-4 mb-4">#}
+{#                            <div class="orderForm sk-form d-flex flex-column justify-content-between"#}
+{#                                 style="min-height:100%;">#}
+{#                                <div>#}
+{#                                    <h2 class="h3 font-weight-bold mb-4"><a href="#orderFormSection">Buyurtma berish</a>#}
+{#                                    </h2>#}
+{##}
+{#                                    <p class="mb-3">Mahsulot narxi: <strong class="pricetag position-price2">30,000#}
+{#                                        so'm</strong></p>#}
+{##}
+{#                                    <div class="alert alert-info">#}
+{#                                        <strong>Yetqazib berish narxi: 30,000 so'm</strong>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{##}
+{#                                <div class="my-3">#}
+{#                                    <input type="hidden" name="product_id" value="2974">#}
+{#                                    <input type="hidden" name="stream_id" value="">#}
+{#                                    <input type="hidden" name="store_id" value="82">#}
+{##}
+{#                                    <input type="hidden" name="product_item_id" value="3141">#}
+{##}
+{##}
+{#                                    <div class="form-group">#}
+{#                                        <input class="form-control needclear" name="client_full_name"#}
+{#                                               placeholder="Ismingiz" type="text">#}
+{#                                        <div id="error_client-name" style="display: none" class="text-danger"></div>#}
+{#                                    </div>#}
+{##}
+{#                                    <div class="form-group">#}
+{#                                        <input class="my-phone-mask form-control needclear" name="customer_phone"#}
+{#                                               id="customer_phone" placeholder="Telefon raqamingiz" type="text">#}
+{#                                        <div id="error_client-phone" style="display: none" class="text-danger"></div>#}
+{#                                    </div>#}
+{##}
+{#                                    <div id="partialCountryState">#}
+{#                                        <div class="form-group">#}
+{#                                            <select required="" class="form-control" name="region_id">#}
+{#                                                <option value="" selected="selected">Hududni tanlang ⬇</option>#}
+{#                                                <option value="13">Toshkent shahri</option>#}
+{#                                                <option value="12">Andijon</option>#}
+{#                                                <option value="11">Buxoro</option>#}
+{#                                                <option value="1">Fargona</option>#}
+{#                                                <option value="10">Jizzax</option>#}
+{#                                                <option value="6">Namangan</option>#}
+{#                                                <option value="7">Navoiy</option>#}
+{#                                                <option value="8">Qashqadaryo</option>#}
+{#                                                <option value="9">Qoraqalpogiston</option>#}
+{#                                                <option value="5">Samarqand</option>#}
+{#                                                <option value="3">Sirdaryo</option>#}
+{#                                                <option value="4">Surxondaryo</option>#}
+{#                                                <option value="2">Toshkent viloyati</option>#}
+{#                                                <option value="14">Xorazm</option>#}
+{#                                            </select>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{##}
+{#                                </div>#}
+{#                                <div>#}
+{#                                    <div class="row">#}
+{#                                        <div class="col">#}
+{#                                            <div class="text-center">#}
+{#                                                <button id="btnSubmit" data-attach-loading="" type="submit"#}
+{#                                                        style="max-width: 100%"#}
+{#                                                        class="sk-btn sk-btn--primary sk-btn--block sk-btn--lg">#}
+{#                                                    Buyurtma berish#}
+{#                                                    <div class="loader"></div>#}
+{#                                                </button>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{##}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                </form>#}
+{#            </div>#}
+{##}
+{#            <div class="container">#}
+{#                <ul class="nav nav-tabs">#}
+{#                    <li class="nav-item">#}
+{#                        <a href="#productDescription" class="nav-link active" data-toggle="tab">Batafsil ma'lumot</a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
+{#            <div class="productDesc py-5">#}
+{#                <div class="container px-3">#}
+{##}
+{#                    <div class="tab-content" id="myTabContent">#}
+{#                        <div class="tab-pane fade show active" id="productDescription">#}
+{#                            <div>Barcha bolalar uchun mos keladi#}
+{#                                Aqliy darajasini rivojlantiradi#}
+{#                                O’zida yozish uchun qalami bor#}
+{#                                Chidamliy mahsulot#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{##}
+{##}
+{#        </section>#}
+{##}
+{##}
+{#        <!-- Modal -->#}
+{#        <form data-request-flash="" data-request="onAddReview"#}
+{#              data-request-success="$(this).find('input.form-control').val('')"#}
+{#              data-request-update="'product/reviews-list': '#productReviewsList'" class="modal fade" id="exampleModal"#}
+{#              tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
+{#            <div class="modal-dialog" role="document">#}
+{#                <div class="modal-content">#}
+{#                    <div class="modal-header">#}
+{#                        <h5 class="modal-title" id="exampleModalLabel"> Izoh qoldirish </h5>#}
+{#                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+{#                            <span aria-hidden="true">×</span>#}
+{#                        </button>#}
+{#                    </div>#}
+{#                    <div class="modal-body">#}
+{##}
+{#                        <input type="hidden" name="product_id" value="2974">#}
+{##}
+{#                        <div class="form-group">#}
+{#                            <label for="exampleInputEmail1">Ismingiz</label>#}
+{#                            <input type="text" name="author" class="form-control" id="exampleInputEmail1"#}
+{#                                   placeholder="Ismingizni kiriting">#}
+{#                        </div>#}
+{##}
+{#                        <div class="form-group">#}
+{#                            <label for="exampleInputPassword1">Izohingiz</label>#}
+{#                            <textarea name="text" placeholder="Izohingizni kiriting" class="form-control"#}
+{#                                      id="exampleInputPassword1"></textarea>#}
+{#                        </div>#}
+{##}
+{#                        <div class="form-group">#}
+{#                            <div class="form-check">#}
+{#                                <input class="form-check-input" type="radio" name="rating" id="rating5" value="5"#}
+{#                                       checked="">#}
+{#                                <label class="form-check-label" for="rating5">#}
+{#                                    Ajoyib#}
+{#                                </label>#}
+{#                            </div>#}
+{##}
+{#                            <div class="form-check">#}
+{#                                <input class="form-check-input" type="radio" name="rating" id="rating4" value="4">#}
+{#                                <label class="form-check-label" for="rating4">#}
+{#                                    Yaxshi#}
+{#                                </label>#}
+{#                            </div>#}
+{##}
+{#                            <div class="form-check">#}
+{#                                <input class="form-check-input" type="radio" name="rating" id="rating3" value="3">#}
+{#                                <label class="form-check-label" for="rating3">#}
+{#                                    Qoniqarli#}
+{#                                </label>#}
+{#                            </div>#}
+{##}
+{#                            <div class="form-check">#}
+{#                                <input class="form-check-input" type="radio" name="rating" id="rating2" value="2">#}
+{#                                <label class="form-check-label" for="rating2">#}
+{#                                    Yomon#}
+{#                                </label>#}
+{#                            </div>#}
+{##}
+{#                            <div class="form-check">#}
+{#                                <input class="form-check-input" type="radio" name="rating" id="rating1" value="1">#}
+{#                                <label class="form-check-label" for="rating1">#}
+{#                                    Juda yomon#}
+{#                                </label>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{##}
+{#                    </div>#}
+{#                    <div class="modal-footer">#}
+{#                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</button>#}
+{#                        <button type="submit" class="btn btn-primary">Izoh qoldirish</button>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </form>#}
+{##}
+{#        <style>#}
+{#            .form-group .btn-danger {#}
+{#                background-color: #d8d8d8;#}
+{#                color: black;#}
+{#            }#}
+{##}
+{#            .position-btn-group {#}
+{#                row-gap: 10px;#}
+{#                flex-wrap: wrap;#}
+{#            }#}
+{##}
+{#            .position-btn {#}
+{#                font-size: 14px;#}
+{#                padding: 5px;#}
+{#                background-color: white !important;#}
+{#                color: #0b2e13 !important;#}
+{#                border: 1px solid rgba(0, 0, 0, 0.2) !important;#}
+{#                box-shadow: none !important;#}
+{#                font-weight: 500;#}
+{#            }#}
+{##}
+{#            .position-btn.active {#}
+{#                border: 2px solid #0b2e13 !important;#}
+{#                background-color: #eee !important;#}
+{#            }#}
+{##}
+{##}
+{#            .siteFooter .container, .topLine {#}
+{#                display: none;#}
+{#            }#}
+{##}
+{#            #notifications-container {#}
+{#                position: fixed;#}
+{#                top: 20px;#}
+{#                right: 20px;#}
+{#                z-index: 9999;#}
+{#                display: flex;#}
+{#                flex-direction: column;#}
+{#                gap: 10px;#}
+{#            }#}
+{##}
+{#            .notification {#}
+{#                padding: 15px 20px;#}
+{#                border-radius: 5px;#}
+{#                color: #fff;#}
+{#                display: flex;#}
+{#                justify-content: space-between;#}
+{#                align-items: center;#}
+{#                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);#}
+{#                animation: fadeIn 0.5s ease;#}
+{#            }#}
+{##}
+{#            .notify-success {#}
+{#                background-color: #28a745;#}
+{#            }#}
+{##}
+{#            .notify-error {#}
+{#                background-color: #dc3545;#}
+{#            }#}
+{##}
+{#            .notification .delete {#}
+{#                color: #fff;#}
+{#                cursor: pointer;#}
+{#                font-weight: bold;#}
+{#                margin-left: 10px;#}
+{#            }#}
+{##}
+{#            @keyframes fadeIn {#}
+{#                from {#}
+{#                    opacity: 0;#}
+{#                    transform: translateY(-10px);#}
+{#                }#}
+{#                to {#}
+{#                    opacity: 1;#}
+{#                    transform: translateY(0);#}
+{#                }#}
+{#            }#}
+{##}
+{#            #productDescription {#}
+{#                font-size: 20px;#}
+{#            }#}
+{##}
+{#            .loader {#}
+{#                display: none;#}
+{#                position: absolute;#}
+{#                top: 25%;#}
+{#                left: 45%;#}
+{#                z-index: 10;#}
+{#                border: 4px solid #f3f3f3;#}
+{#                border-radius: 50%;#}
+{#                border-top: 4px solid #eb0000;#}
+{#                width: 30px;#}
+{#                height: 30px;#}
+{#                -webkit-animation: spin 2s linear infinite; /* Safari */#}
+{#                animation: spin 2s linear infinite;#}
+{#            }#}
+{##}
+{#            /* Safari */#}
+{#            @-webkit-keyframes spin {#}
+{#                0% {#}
+{#                    -webkit-transform: rotate(0deg);#}
+{#                }#}
+{#                100% {#}
+{#                    -webkit-transform: rotate(360deg);#}
+{#                }#}
+{#            }#}
+{##}
+{#            @keyframes spin {#}
+{#                0% {#}
+{#                    transform: rotate(0deg);#}
+{#                }#}
+{#                100% {#}
+{#                    transform: rotate(360deg);#}
+{#                }#}
+{#            }#}
+{##}
+{#            #btnSubmit {#}
+{#                box-sizing: border-box;#}
+{#                position: relative;#}
+{#            }#}
+{##}
+{#            .flash-error {#}
+{#                display: none;#}
+{#            }#}
+{##}
+{#            .--loading {#}
+{#                border: 2px solid rgba(235, 0, 0, 0.6);#}
+{#                background-color: rgba(235, 0, 0, 0.6);#}
+{#            }#}
+{##}
+{#            .--loading:before {#}
+{#                position: absolute;#}
+{#                display: block;#}
+{#                content: '';#}
+{#                width: 100%;#}
+{#                height: 100%;#}
+{#                top: 0;#}
+{#                left: 0;#}
+{#                z-index: 1;#}
+{#                border-radius: 50px;#}
+{#                background-color: rgba(255, 255, 255, 0.5);#}
+{#            }#}
+{##}
+{#            .--loading .loader {#}
+{#                display: block;#}
+{#            }#}
+{##}
+{#            /* hide search and center logo on mobile */#}
+{#            @media (max-width: 767px) {#}
+{#                .col-logo {#}
+{#                    flex: 1 0 auto;#}
+{#                    text-align: center;#}
+{#                }#}
+{##}
+{#                .col-search {#}
+{#                    display: none !important;#}
+{#                }#}
+{#            }#}
+{##}
+{#        </style>#}
+{##}
+{##}
+{#    </main>#}
+{#{% endblock %}#}
+
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="utf-8">
+    <meta name="turbo-visit-control" content="disable">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="https://100k.uz/assets/favicon/favicon.ico" type="image/png">
+    <link rel="stylesheet" href="https://100k.uz/assets/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://100k.uz/assets/owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://100k.uz/assets/css/style.bundle.css">
+    <link rel="stylesheet" href="https://100k.uz/assets/css/sk-custom.css">
+
+    <meta name="facebook-domain-verification" content="vscckga1qoxrelpr7caxcfq0kqwc2g">
+    <!-- seo meta tags -->
+    <title>Xarid qilish - Krossovkalar yoz, bahor va kuz uchun: 147000 so'm</title>
+    <meta name="description"
+          content="Yengil va qulay dizaynga ega bo‘lgan ushbu krasofkalar kundalik kiyim va sport mashg‘ulotlari uchun ajoyib tanlovdir. Yuqori sifatli materiallardan tayyorlangan bo‘lib, oyoqqa mukammal moslashadi va nafas oluvchi tuzilmasi tufayli qulaylikni ta’minlaydi....">
+    <meta name="csrf-token" content="K1sAIznq4BwwTCrFcYM19gcdEECv1gfywLOq0sMu">
+
+    <!-- Meta Pixel Code -->
+    <script src="https://connect.facebook.net/signals/config/1910080826109583?v=2.9.199&amp;r=stable&amp;domain=100k.uz&amp;hme=53363064397d256bdf8f213dd9a9e18c291fc2ed691e4233e4a9e488f248f817&amp;ex_m=73%2C128%2C113%2C117%2C64%2C5%2C106%2C72%2C18%2C100%2C92%2C53%2C57%2C182%2C203%2C210%2C206%2C207%2C209%2C31%2C107%2C55%2C80%2C208%2C177%2C180%2C204%2C205%2C190%2C139%2C43%2C195%2C192%2C193%2C36%2C152%2C17%2C52%2C199%2C198%2C141%2C20%2C42%2C1%2C45%2C68%2C69%2C70%2C74%2C96%2C19%2C16%2C99%2C95%2C94%2C114%2C54%2C116%2C41%2C115%2C32%2C97%2C28%2C178%2C181%2C149%2C13%2C14%2C15%2C7%2C8%2C27%2C24%2C25%2C60%2C65%2C67%2C78%2C56%2C105%2C108%2C29%2C79%2C11%2C9%2C83%2C50%2C23%2C110%2C109%2C111%2C102%2C12%2C22%2C3%2C40%2C77%2C21%2C161%2C89%2C135%2C49%2C48%2C101%2C76%2C0%2C98%2C59%2C87%2C35%2C30%2C85%2C86%2C91%2C39%2C6%2C93%2C84%2C46%2C34%2C37%2C90%2C4%2C88%2C248%2C175%2C126%2C164%2C157%2C2%2C38%2C66%2C44%2C112%2C47%2C82%2C71%2C118%2C63%2C62%2C33%2C103%2C61%2C58%2C51%2C81%2C75%2C26%2C104%2C10%2C119"
+            async=""></script>
+    <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
+    <script>
+        function getFbclid() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('fbclid');
+        }
+
+        const fbclid = getFbclid();
+
+        const fbc = fbclid ? `fb.1.${Date.now()}.${fbclid}` : null;
+
+        // Сохранение `fbc` в cookie для использования в последующих событиях
+        if (fbc) {
+            document.cookie = `_fbc=${fbc}; path=/; domain=${location.hostname}; max-age=7776000`; // Сохраняется на 90 дней
+        }
+
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1910080826109583');
+
+
+        // Извлечение `fbc` из cookie
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        fbq('track', 'PageView', {
+            fbc: getCookie('_fbc'),
+            fbp: getCookie('_fbp'),
+        });
+
+        function getFbclid() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('fbclid');
+        }
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+                   src="https://www.facebook.com/tr?id=1910080826109583&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <style type="text/css" id="notify-bootstrap">.notifyjs-bootstrap-base {
+        font-weight: bold;
+        padding: 8px 15px 8px 14px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        background-color: #fcf8e3;
+        border: 1px solid #fbeed5;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        white-space: nowrap;
+        padding-left: 25px;
+        background-repeat: no-repeat;
+        background-position: 3px 7px;
+    }
+
+    .notifyjs-bootstrap-error {
+        color: #B94A48;
+        background-color: #F2DEDE;
+        border-color: #EED3D7;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAtRJREFUeNqkVc1u00AQHq+dOD+0poIQfkIjalW0SEGqRMuRnHos3DjwAH0ArlyQeANOOSMeAA5VjyBxKBQhgSpVUKKQNGloFdw4cWw2jtfMOna6JOUArDTazXi/b3dm55socPqQhFka++aHBsI8GsopRJERNFlY88FCEk9Yiwf8RhgRyaHFQpPHCDmZG5oX2ui2yilkcTT1AcDsbYC1NMAyOi7zTX2Agx7A9luAl88BauiiQ/cJaZQfIpAlngDcvZZMrl8vFPK5+XktrWlx3/ehZ5r9+t6e+WVnp1pxnNIjgBe4/6dAysQc8dsmHwPcW9C0h3fW1hans1ltwJhy0GxK7XZbUlMp5Ww2eyan6+ft/f2FAqXGK4CvQk5HueFz7D6GOZtIrK+srupdx1GRBBqNBtzc2AiMr7nPplRdKhb1q6q6zjFhrklEFOUutoQ50xcX86ZlqaZpQrfbBdu2R6/G19zX6XSgh6RX5ubyHCM8nqSID6ICrGiZjGYYxojEsiw4PDwMSL5VKsC8Yf4VRYFzMzMaxwjlJSlCyAQ9l0CW44PBADzXhe7xMdi9HtTrdYjFYkDQL0cn4Xdq2/EAE+InCnvADTf2eah4Sx9vExQjkqXT6aAERICMewd/UAp/IeYANM2joxt+q5VI+ieq2i0Wg3l6DNzHwTERPgo1ko7XBXj3vdlsT2F+UuhIhYkp7u7CarkcrFOCtR3H5JiwbAIeImjT/YQKKBtGjRFCU5IUgFRe7fF4cCNVIPMYo3VKqxwjyNAXNepuopyqnld602qVsfRpEkkz+GFL1wPj6ySXBpJtWVa5xlhpcyhBNwpZHmtX8AGgfIExo0ZpzkWVTBGiXCSEaHh62/PoR0p/vHaczxXGnj4bSo+G78lELU80h1uogBwWLf5YlsPmgDEd4M236xjm+8nm4IuE/9u+/PH2JXZfbwz4zw1WbO+SQPpXfwG/BBgAhCNZiSb/pOQAAAAASUVORK5CYII=);
+    }
+
+    .notifyjs-bootstrap-success {
+        color: #468847;
+        background-color: #DFF0D8;
+        border-color: #D6E9C6;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAutJREFUeNq0lctPE0Ecx38zu/RFS1EryqtgJFA08YCiMZIAQQ4eRG8eDGdPJiYeTIwHTfwPiAcvXIwXLwoXPaDxkWgQ6islKlJLSQWLUraPLTv7Gme32zoF9KSTfLO7v53vZ3d/M7/fIth+IO6INt2jjoA7bjHCJoAlzCRw59YwHYjBnfMPqAKWQYKjGkfCJqAF0xwZjipQtA3MxeSG87VhOOYegVrUCy7UZM9S6TLIdAamySTclZdYhFhRHloGYg7mgZv1Zzztvgud7V1tbQ2twYA34LJmF4p5dXF1KTufnE+SxeJtuCZNsLDCQU0+RyKTF27Unw101l8e6hns3u0PBalORVVVkcaEKBJDgV3+cGM4tKKmI+ohlIGnygKX00rSBfszz/n2uXv81wd6+rt1orsZCHRdr1Imk2F2Kob3hutSxW8thsd8AXNaln9D7CTfA6O+0UgkMuwVvEFFUbbAcrkcTA8+AtOk8E6KiQiDmMFSDqZItAzEVQviRkdDdaFgPp8HSZKAEAL5Qh7Sq2lIJBJwv2scUqkUnKoZgNhcDKhKg5aH+1IkcouCAdFGAQsuWZYhOjwFHQ96oagWgRoUov1T9kRBEODAwxM2QtEUl+Wp+Ln9VRo6BcMw4ErHRYjH4/B26AlQoQQTRdHWwcd9AH57+UAXddvDD37DmrBBV34WfqiXPl61g+vr6xA9zsGeM9gOdsNXkgpEtTwVvwOklXLKm6+/p5ezwk4B+j6droBs2CsGa/gNs6RIxazl4Tc25mpTgw/apPR1LYlNRFAzgsOxkyXYLIM1V8NMwyAkJSctD1eGVKiq5wWjSPdjmeTkiKvVW4f2YPHWl3GAVq6ymcyCTgovM3FzyRiDe2TaKcEKsLpJvNHjZgPNqEtyi6mZIm4SRFyLMUsONSSdkPeFtY1n0mczoY3BHTLhwPRy9/lzcziCw9ACI+yql0VLzcGAZbYSM5CCSZg1/9oc/nn7+i8N9p/8An4JMADxhH+xHfuiKwAAAABJRU5ErkJggg==);
+    }
+
+    .notifyjs-bootstrap-info {
+        color: #3A87AD;
+        background-color: #D9EDF7;
+        border-color: #BCE8F1;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYFAhkSsdes/QAAA8dJREFUOMvVlGtMW2UYx//POaWHXg6lLaW0ypAtw1UCgbniNOLcVOLmAjHZolOYlxmTGXVZdAnRfXQm+7SoU4mXaOaiZsEpC9FkiQs6Z6bdCnNYruM6KNBw6YWewzl9z+sHImEWv+vz7XmT95f/+3/+7wP814v+efDOV3/SoX3lHAA+6ODeUFfMfjOWMADgdk+eEKz0pF7aQdMAcOKLLjrcVMVX3xdWN29/GhYP7SvnP0cWfS8caSkfHZsPE9Fgnt02JNutQ0QYHB2dDz9/pKX8QjjuO9xUxd/66HdxTeCHZ3rojQObGQBcuNjfplkD3b19Y/6MrimSaKgSMmpGU5WevmE/swa6Oy73tQHA0Rdr2Mmv/6A1n9w9suQ7097Z9lM4FlTgTDrzZTu4StXVfpiI48rVcUDM5cmEksrFnHxfpTtU/3BFQzCQF/2bYVoNbH7zmItbSoMj40JSzmMyX5qDvriA7QdrIIpA+3cdsMpu0nXI8cV0MtKXCPZev+gCEM1S2NHPvWfP/hL+7FSr3+0p5RBEyhEN5JCKYr8XnASMT0xBNyzQGQeI8fjsGD39RMPk7se2bd5ZtTyoFYXftF6y37gx7NeUtJJOTFlAHDZLDuILU3j3+H5oOrD3yWbIztugaAzgnBKJuBLpGfQrS8wO4FZgV+c1IxaLgWVU0tMLEETCos4xMzEIv9cJXQcyagIwigDGwJgOAtHAwAhisQUjy0ORGERiELgG4iakkzo4MYAxcM5hAMi1WWG1yYCJIcMUaBkVRLdGeSU2995TLWzcUAzONJ7J6FBVBYIggMzmFbvdBV44Corg8vjhzC+EJEl8U1kJtgYrhCzgc/vvTwXKSib1paRFVRVORDAJAsw5FuTaJEhWM2SHB3mOAlhkNxwuLzeJsGwqWzf5TFNdKgtY5qHp6ZFf67Y/sAVadCaVY5YACDDb3Oi4NIjLnWMw2QthCBIsVhsUTU9tvXsjeq9+X1d75/KEs4LNOfcdf/+HthMnvwxOD0wmHaXr7ZItn2wuH2SnBzbZAbPJwpPx+VQuzcm7dgRCB57a1uBzUDRL4bfnI0RE0eaXd9W89mpjqHZnUI5Hh2l2dkZZUhOqpi2qSmpOmZ64Tuu9qlz/SEXo6MEHa3wOip46F1n7633eekV8ds8Wxjn37Wl63VVa+ej5oeEZ/82ZBETJjpJ1Rbij2D3Z/1trXUvLsblCK0XfOx0SX2kMsn9dX+d+7Kf6h8o4AIykuffjT8L20LU+w4AZd5VvEPY+XpWqLV327HR7DzXuDnD8r+ovkBehJ8i+y8YAAAAASUVORK5CYII=);
+    }
+
+    .notifyjs-bootstrap-warn {
+        color: #C09853;
+        background-color: #FCF8E3;
+        border-color: #FBEED5;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAABJlBMVEXr6eb/2oD/wi7/xjr/0mP/ykf/tQD/vBj/3o7/uQ//vyL/twebhgD/4pzX1K3z8e349vK6tHCilCWbiQymn0jGworr6dXQza3HxcKkn1vWvV/5uRfk4dXZ1bD18+/52YebiAmyr5S9mhCzrWq5t6ufjRH54aLs0oS+qD751XqPhAybhwXsujG3sm+Zk0PTwG6Shg+PhhObhwOPgQL4zV2nlyrf27uLfgCPhRHu7OmLgAafkyiWkD3l49ibiAfTs0C+lgCniwD4sgDJxqOilzDWowWFfAH08uebig6qpFHBvH/aw26FfQTQzsvy8OyEfz20r3jAvaKbhgG9q0nc2LbZxXanoUu/u5WSggCtp1anpJKdmFz/zlX/1nGJiYmuq5Dx7+sAAADoPUZSAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfdBgUBGhh4aah5AAAAlklEQVQY02NgoBIIE8EUcwn1FkIXM1Tj5dDUQhPU502Mi7XXQxGz5uVIjGOJUUUW81HnYEyMi2HVcUOICQZzMMYmxrEyMylJwgUt5BljWRLjmJm4pI1hYp5SQLGYxDgmLnZOVxuooClIDKgXKMbN5ggV1ACLJcaBxNgcoiGCBiZwdWxOETBDrTyEFey0jYJ4eHjMGWgEAIpRFRCUt08qAAAAAElFTkSuQmCC);
+    }
+    </style>
+    <script async="" id="amo_social_button_script" src="https://gso.amocrm.ru/js/button.js"></script>
+    <style type="text/css" id="core-notify">.notifyjs-corner {
+        position: fixed;
+        margin: 5px;
+        z-index: 1050;
+    }
+
+    .notifyjs-corner .notifyjs-wrapper,
+    .notifyjs-corner .notifyjs-container {
+        position: relative;
+        display: block;
+        height: inherit;
+        width: inherit;
+        margin: 3px;
+    }
+
+    .notifyjs-wrapper {
+        z-index: 1;
+        position: absolute;
+        display: inline-block;
+        height: 0;
+        width: 0;
+    }
+
+    .notifyjs-container {
+        display: none;
+        z-index: 1;
+        position: absolute;
+    }
+
+    .notifyjs-hidable {
+        cursor: pointer;
+    }
+
+    [data-notify-text], [data-notify-html] {
+        position: relative;
+    }
+
+    .notifyjs-arrow {
+        position: absolute;
+        z-index: 2;
+        width: 0;
+        height: 0;
+    }</style>
+</head>
+
+<body class="d-flex flex-column">
+<div class="topLine">
+    <div class="container">
+        <div class="row align-items-center py-1">
+            <div class="col-auto">
+                <div class="d-flex">
+                    <a href="https://play.google.com/store/apps/details?id=uz.yuzka.shop100k"
+                       class="androidDownloadBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             xmlns:svgjs="http://svgjs.com/svgjs" width="16" height="16" x="0" y="0"
+                             viewBox="0 0 505.145 505.145" style="enable-background:new 0 0 512 512"
+                             xml:space="preserve" class="">
+                        <g xmlns="http://www.w3.org/2000/svg">
+                            <path style=""
+                                  d="M68.541,164.715h-1.294c-16.588,0-30.113,13.568-30.113,30.113v131.107     c0,16.61,13.525,30.134,30.113,30.134h1.316c16.588,0,30.113-13.568,30.113-30.134V194.827     C98.654,178.283,85.108,164.715,68.541,164.715z"
+                                  fill="#010002" data-original="#010002" class=""></path>
+                            <path style=""
+                                  d="M113.085,376.54c0,15.229,12.446,27.632,27.675,27.632h29.574v70.817     c0,16.631,13.568,30.156,30.113,30.156h1.294c16.61,0,30.156-13.546,30.156-30.156v-70.817h41.33v70.817     c0,16.631,13.611,30.156,30.156,30.156h1.273c16.609,0,30.134-13.546,30.134-30.156v-70.817h29.595     c15.207,0,27.654-12.403,27.654-27.632V169.525H113.085V376.54z"
+                                  fill="#010002" data-original="#010002" class=""></path>
+                            <path style=""
+                                  d="M322.041,43.983l23.491-36.26c1.51-2.287,0.841-5.414-1.467-6.903     c-2.286-1.51-5.414-0.884-6.903,1.467l-24.353,37.512c-18.27-7.485-38.676-11.691-60.226-11.691     c-21.571,0-41.934,4.206-60.247,11.691l-24.31-37.512c-1.488-2.351-4.638-2.977-6.946-1.467     c-2.308,1.488-2.977,4.616-1.467,6.903l23.512,36.26c-42.387,20.773-70.968,59.924-70.968,104.834     c0,2.761,0.173,5.479,0.41,8.175h280.053c0.237-2.696,0.388-5.414,0.388-8.175C393.009,103.907,364.406,64.756,322.041,43.983z      M187.655,108.911c-7.442,0-13.482-5.997-13.482-13.46c0-7.463,6.04-13.439,13.482-13.439c7.485,0,13.482,5.975,13.482,13.439     S195.097,108.911,187.655,108.911z M317.49,108.911c-7.442,0-13.482-5.997-13.482-13.46c0-7.463,6.04-13.439,13.482-13.439     c7.463,0,13.46,5.975,13.46,13.439C330.95,102.914,324.953,108.911,317.49,108.911z"
+                                  fill="#010002" data-original="#010002" class=""></path>
+                            <path style=""
+                                  d="M437.876,164.715h-1.251c-16.588,0-30.156,13.568-30.156,30.113v131.107     c0,16.61,13.59,30.134,30.156,30.134h1.273c16.609,0,30.113-13.568,30.113-30.134V194.827     C468.011,178.283,454.464,164.715,437.876,164.715z"
+                                  fill="#010002" data-original="#010002" class=""></path>
+                        </g>
+                    </svg>
+                        <span class="d-none d-sm-inline">Google Play</span>
+                    </a>
+                    <a href="https://apps.apple.com/pl/app/100k-uz/id1529911106" class="iosDownloadBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             xmlns:svgjs="http://svgjs.com/svgjs" width="16" height="16" x="0" y="0"
+                             viewBox="0 0 502.657 502.657" style="enable-background:new 0 0 512 512"
+                             xml:space="preserve" class=""><g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                                <path d="M389.063,281.758c-13.827-69.587,52.223-110.399,52.223-110.399s-25.734-37.231-68.983-46.809    c-43.228-9.599-64.863,2.394-86.456,11.389c-21.614,9.017-32.399,9.017-32.399,9.017c-31.191,0-53.992-33.025-113.419-17.99    c-40.941,10.332-84.04,57.594-91.827,114.002c-7.787,56.429,9.017,128.432,41.416,184.236    c32.399,55.847,65.403,76.835,88.828,77.439c23.426,0.582,46.809-16.782,75.002-21.01c28.215-4.185,45.579,10.225,73.254,18.012    c27.567,7.766,37.231,0.561,68.983-26.446c31.838-27.007,60.657-104.467,60.657-104.467S402.89,351.388,389.063,281.758z"
+                                      fill="#000000" data-original="#000000" class=""></path>
+                                <path d="M327.845,79.531C358.475,48.319,348.1,0,348.1,0s-43.012,7.55-71.831,37.533c-28.797,30.005-24.03,77.396-24.03,77.396    S297.214,110.723,327.845,79.531z"
+                                      fill="#000000" data-original="#000000" class=""></path>
+                            </g>
+                        </g>
+                        </svg>
+                        <span class="d-none d-sm-inline">Appstore</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col"></div>
+
+
+            <div class="col-auto">
+                <div class="dropdown px-2">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-globe mr-1"></i>
+                        <span>Mening profilim</span>
+                    </a>
+
+                    <div class="dropdown-menu mt-3 dropdown-menu-right">
+                        <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
+                           href="https://100k.uz/pages/contacts">Aloqa uchun</a>
+
+                        <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
+                           href="https://admin.100k.uz">Profil</a>
+
+                        <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
+                           href="https://admin.100k.uz">Adminlar uchun</a>
+
+                        <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
+                           href="https://admin.100k.uz">Sozlamalar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<header class="siteHeader">
+    <div class="container">
+        <div class="row align-items-center siteHeader--height">
+            <div class="col-auto col-logo">
+                <a href="/" class="header_navbar_brand_logo">
+                    <img src="https://100k.uz/assets/100k.png"
+                         style="height: 30px; object-fit: cover; margin-top: -10px" alt="100k.uz">
+                </a>
+            </div>
+            <div class="d-none d-md-block col-sm-1"></div>
+            <div class="col col-search">
+                <form action="https://100k.uz/search" method="GET" class="siteSearch">
+
+                    <input name="search" type="text" placeholder="qidiruv..." autocomplete="off" data-track-input="500"
+                           id="siteSearchInput">
+
+                    <button data-attach-loading="">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             xmlns:svgjs="http://svgjs.com/svgjs" width="20" height="20" x="0" y="0"
+                             viewBox="0 0 6.3499999 6.3500002" style="enable-background:new 0 0 512 512"
+                             xml:space="preserve">
+            <g>
+                <g xmlns="http://www.w3.org/2000/svg" id="layer1" transform="translate(0 -290.65)">
+                    <path id="circle2017"
+                          d="m2.8944091 291.16099c-1.3119941 0-2.38073328 1.06874-2.38073328 2.38074 0 1.31199 1.06873918 2.3828 2.38073328 2.3828.5603925 0 1.0757805-.19638 1.4831137-.52245l.9916707.99115a.26516505.26516505 0 0 0 .375171-.37465l-.9916708-.99167c.3263411-.40796.5229654-.92414.5229654-1.48518 0-1.312-1.0692559-2.38074-2.38125-2.38074zm0 .52917c1.0260113 0 1.8515666.82556 1.8515666 1.85157s-.8255553 1.85363-1.8515666 1.85363-1.8515666-.82762-1.8515666-1.85363.8255553-1.85157 1.8515666-1.85157z"
+                          font-variant-ligatures="normal" font-variant-position="normal" font-variant-caps="normal"
+                          font-variant-numeric="normal" font-variant-alternates="normal" font-feature-settings="normal"
+                          text-indent="0" text-align="start" text-decoration-line="none" text-decoration-style="solid"
+                          text-decoration-color="rgb(0,0,0)" text-transform="none" text-orientation="mixed"
+                          white-space="normal" shape-padding="0" isolation="auto" mix-blend-mode="normal"
+                          solid-color="rgb(0,0,0)" solid-opacity="1" vector-effect="none"
+                          paint-order="stroke fill markers" fill="#ffffff"></path>
+                </g>
+            </g>
+        </svg>
+                    </button>
+                    <div id="mainSearchResult" class="siteSearch--info">
+
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="d-none d-md-block col-sm-1"></div>
+            <div class="col-auto d-none d-md-block">
+                <!-- user -->
+                <div class="header_navbar_profile">
+                    <div class="d-flex align-items-center">
+                        <a href="https://admin.100k.uz" class="d-inline-block p-2">
+                            <i class="fa fa-user mr-2"></i>
+                            <span>Mening kabinetim</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- /user -->
+            </div>
+            <div class="col-auto">
+                <div class="dropdown px-2">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-globe mr-1"></i>
+                        <span>Uz</span>
+                    </a>
+
+                    <div class="dropdown-menu mt-3 dropdown-menu-right">
+                        <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
+                           href="https://100k.uz/change-language?lang=uz">Uz</a>
+
+                        <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
+                           href="https://100k.uz/change-language?lang=ru">Ru</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="d-md-none header_navbar_collapse">
+    <ul class="header_navbar_collapse_nav" style="min-height: 54px">
+        <li class="header_navbar_collapse_nav_item">
+            <div class="header_navbar_collapse_nav_item_pad">
+                <a class="header_navbar_collapse_nav_item_link " href="/"><span class="icon-home"></span>
+                    <p></p></a>
+            </div>
+        </li>
+        <li class="header_navbar_collapse_nav_item">
+            <div class="header_navbar_collapse_nav_item_pad">
+                <a class="header_navbar_collapse_nav_item_link " href="/explore"> <span class="fa fa-search"
+                                                                                        aria-hidden="true"></span>
+                    <p></p></a>
+            </div>
+        </li>
+
+        <li class="header_navbar_collapse_nav_item">
+            <div class="header_navbar_collapse_nav_item_pad">
+                <a class="header_navbar_collapse_nav_item_link " href="/add"> <span class="fa fa-plus"
+                                                                                    aria-hidden="true"></span>
+                    <p></p></a>
+            </div>
+        </li>
+
+        <li class="header_navbar_collapse_nav_item">
+            <div class="header_navbar_collapse_nav_item_pad">
+                <a class="header_navbar_collapse_nav_item_link }}" href="/shop/orders">
+                    <span class="icon-cart"></span>
+                    <p></p></a>
+            </div>
+        </li>
+
+
+        <li class="header_navbar_collapse_nav_item">
+            <div class="header_navbar_collapse_nav_item_pad">
+                <a class="header_navbar_collapse_nav_item_link" href="/admin">
+
+                    <span class="fa fa-user"></span>
+
+                    <p></p>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+<main class="client-template">
+    <section class="main">
+        <div id="notifications-container"></div>
+
+
+        <div class="container py-3">
+            <div class="row align-items-center">
+                <div class="col my-3 pr-3">
+                    <h1 class="h4 font-weight-bold mb-0">{{ product.name }}</h1>
+                </div>
+                <div class="col-auto my-3 text-right">
+                    <strong data-price="147000" id="productPrice" class="position-price1">
+                        {{ product.price|floatformat:"0"|intcomma }} so'm
+                    </strong>
+                    <div class="text-warning">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            {#  Form ---->  #}
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="owl-carousel owl-theme content_linear_card_body_indicators owl-loaded owl-drag">
+
+
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage" style="transform: translate3d(-1293px, 0px, 0px); transition: all; width: 5172px;">
+
+                                {% if product.thumbnail_video %}
+                                    <div class="owl-item active" style="width: 431px;">
+                                        <div class="item-video">
+                                            <video width="100%" controls="">
+                                                <source src="{{ product.thumbnail_video }}" type="video/mp4">
+                                                Sizning brovseringiz ushbu videoni oqiy olmaydi
+                                            </video>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% for image in images %}
+                                    <div class="owl-item" style="width: 431px;">
+                                        <div class="item">
+                                            <img loading="lazy" class="lazyloaded"
+                                                 src="{{ image.image.url }}"
+                                                 data-src=""
+                                                 alt="{{ product.name }}">
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="orderFormSection" class="col-md-6 pl-md-4 mb-4">
+                    <div class="orderForm sk-form d-flex flex-column justify-content-between"
+                         style="min-height:100%;">
+                        <div>
+                            <h2 class="h3 font-weight-bold mb-4"><a href="#orderFormSection">Buyurtma berish</a>
+                            </h2>
+
+                            <p class="mb-3">Mahsulot narxi: <strong class="pricetag position-price2">
+                                {{ product.price|floatformat|intcomma }}
+                                so'm</strong></p>
+
+                            <div class="alert alert-info">
+                                <strong>Yetqazib berish narxi: 30,000 so'm</strong>
+                            </div>
+                        </div>
+
+                        <form action="{% url 'order' %}" method="post">
+                            {% csrf_token %}
+                            <div class="my-3">
+                                <input type="hidden" name="product_id" value="{{ product.pk }}">
+                                <input type="hidden" name="user" value="{{ request.user.pk }}">
+                                {% if stream %}
+                                	 <input type="hidden" name="stream" value="{{ stream.pk }}">
+                                {% endif %}
+
+
+                                {% if product.options %}
+                                    <div class="form-group">
+                                        <label class="form-label" style="margin-bottom: 7px">
+                                            <strong>Mahsulot turini tanlang: </strong>
+                                        </label> <br>
+
+                                        <div class=" btn-group-toggle d-flex gap-3 position-btn-group"
+                                             data-toggle="buttons">
+                                            {% for option in options %}
+                                                <label class="btn btn-lg btn-outline-secondary position-btn">
+                                                    <input type="radio" data-price="{{ product.price }}"
+                                                           name="product-option" value="4586"
+                                                           id="productItem-4586">
+                                                    {{ option.option }}
+                                                </label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                <div class="form-group">
+                                    <input class="form-control needclear" name="name"
+                                           placeholder="Ismingiz"
+                                           type="text">
+                                    <div id="error_client-name" style="display: none" class="text-danger"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input class="my-phone-mask form-control needclear" name="phone_number"
+                                           id="customer_phon" placeholder="Telefon raqamingiz" type="text">
+                                    <div id="error_client-phone" style="display: none" class="text-danger"></div>
+                                </div>
+
+                                <div id="partialCountryState">
+                                    <div class="form-group">
+                                        <select required="" class="form-control" name="region">
+                                            <option value="" selected="selected">Hududni tanlang ⬇</option>
+                                            {% for region in regions %}
+                                            	<option value="{{ region.pk }}">{{ region.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="text-center">
+                                            <button type="submit"
+                                                    style="max-width: 100%"
+                                                    class="sk-btn sk-btn--primary sk-btn--block sk-btn--lg">
+                                                Buyurtma berish
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {#  <---- Form  #}
+        </div>
+
+
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="#productDescription" class="nav-link active" data-toggle="tab">Batafsil ma'lumot</a>
+                </li>
+            </ul>
+        </div>
+        <div class="productDesc py-5">
+            <div class="container px-3">
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="productDescription">
+                        <div>
+                            <span>{{ product.description }}</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </section>
+
+
+    <!-- Modal -->
+    <form data-request-flash="" data-request="onAddReview"
+          data-request-success="$(this).find('input.form-control').val('')"
+          data-request-update="'product/reviews-list': '#productReviewsList'" class="modal fade" id="exampleModal"
+          tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> Izoh qoldirish </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <input type="hidden" name="product_id" value="3977">
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ismingiz</label>
+                        <input type="text" name="author" class="form-control" id="exampleInputEmail1"
+                               placeholder="Ismingizni kiriting">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Izohingiz</label>
+                        <textarea name="text" placeholder="Izohingizni kiriting" class="form-control"
+                                  id="exampleInputPassword1"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rating" id="rating5" value="5"
+                                   checked="">
+                            <label class="form-check-label" for="rating5">
+                                Ajoyib
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rating" id="rating4" value="4">
+                            <label class="form-check-label" for="rating4">
+                                Yaxshi
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rating" id="rating3" value="3">
+                            <label class="form-check-label" for="rating3">
+                                Qoniqarli
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rating" id="rating2" value="2">
+                            <label class="form-check-label" for="rating2">
+                                Yomon
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rating" id="rating1" value="1">
+                            <label class="form-check-label" for="rating1">
+                                Juda yomon
+                            </label>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</button>
+                    <button type="submit" class="btn btn-primary">Izoh qoldirish</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <style>
+        .form-group .btn-danger {
+            background-color: #d8d8d8;
+            color: black;
+        }
+
+        .position-btn-group {
+            row-gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .position-btn {
+            font-size: 14px;
+            padding: 5px;
+            background-color: white !important;
+            color: #0b2e13 !important;
+            border: 1px solid rgba(0, 0, 0, 0.2) !important;
+            box-shadow: none !important;
+            font-weight: 500;
+        }
+
+        .position-btn.active {
+            border: 2px solid #0b2e13 !important;
+            background-color: #eee !important;
+        }
+
+
+        .siteFooter .container, .topLine {
+            display: none;
+        }
+
+        #notifications-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .notification {
+            padding: 15px 20px;
+            border-radius: 5px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .notify-success {
+            background-color: #28a745;
+        }
+
+        .notify-error {
+            background-color: #dc3545;
+        }
+
+        .notification .delete {
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #productDescription {
+            font-size: 20px;
+        }
+
+        .loader {
+            display: none;
+            position: absolute;
+            top: 25%;
+            left: 45%;
+            z-index: 10;
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #eb0000;
+            width: 30px;
+            height: 30px;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #btnSubmit {
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .flash-error {
+            display: none;
+        }
+
+        .--loading {
+            border: 2px solid rgba(235, 0, 0, 0.6);
+            background-color: rgba(235, 0, 0, 0.6);
+        }
+
+        .--loading:before {
+            position: absolute;
+            display: block;
+            content: '';
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .--loading .loader {
+            display: block;
+        }
+
+        /* hide search and center logo on mobile */
+        @media (max-width: 767px) {
+            .col-logo {
+                flex: 1 0 auto;
+                text-align: center;
+            }
+
+            .col-search {
+                display: none !important;
+            }
+        }
+
+    </style>
+
+
+</main>
+
+<footer class="siteFooter mt-auto">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-lg col-sm-6">
+                <ul class="nav flex-column">
+                    <li>
+                        <a href="/profile" class="nav-link">Mening kabinetim </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg col-sm-6">
+                <ul class="nav flex-column">
+                    <li>
+                        <a href="https://100k.uz/pages/about" class="nav-link">Biz haqimizda</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg col-sm-6">
+                <ul class="nav flex-column">
+                    <li>
+                        <a href="https://100k.uz/pages/contacts" class="nav-link">Aloqa uchun</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg col-sm-6">
+                <ul class="nav flex-column">
+                    <li>
+                        <a href="https://100k.uz/pages/privacy-policy" target="_blank" class="nav-link">Ommaviy
+                            oferta</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-auto">
+                    2016-2025 - 100K.UZ
+                </div>
+                <div class="col"></div>
+                <div class="col-auto">
+                    Barcha huquqlar himoyalangan
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://kit.fontawesome.com/43236b6dfa.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/imask"></script>
+
+<script src="https://100k.uz/assets/js/bundle.js"></script>
+<script src="https://100k.uz/assets/lazysizes/lazysizes.min.js"></script>
+<script src="https://100k.uz/assets/owlcarousel/owl.carousel.min.js"></script>
+<script src="https://100k.uz/assets/notify/notify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.6/jquery.inputmask.bundle.min.js"
+        integrity="sha512-ANv9n6sjcVqXuf0+r2zem8gDH7FWWN5qE8cH2Av1eslC+HBTV3i9YXzh9/QxPweDBfqPEh9mH2Wbx6cEwBqoMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://100k.uz/assets/js/custom.js"></script>
+<script>
+    var price = document.getElementById('productPrice').getAttribute('data-price');
+    fbq('track', 'ViewContent', {
+        content_ids: ['3977'],
+        content_type: 'product',
+        value: price,
+        currency: "UZS",
+        content_name: 'Krossovkalar yoz, bahor va kuz uchun',
+        content_category: 'Krossovkalar va kedalar',
+        content_brand: 'Jonik Xitoy',
+        content_list: 'Product Page',
+        content_variant: '41',
+        content_quantity: 1,
+        fbc: getCookie('_fbc'),
+        fbp: getCookie('_fbp'),
+    });
+
+    $(".owl-carousel").owlCarousel({
+        items: 1,
+        loop: true,
+        video: true,
+        animateOut: 'fadeOut',
+        autoplay: false,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+    });
+    let inputs = document.querySelectorAll(".position-btn input");
+    const price1 = document.querySelector(".position-price1")
+    const price2 = document.querySelector(".position-price2");
+
+    inputs.forEach(input => {
+        input.addEventListener("click", function (e) {
+            let price = e.target.getAttribute("data-price");
+            price = Intl.NumberFormat().format(price);
+            price1.innerHTML = `${price} so'm`;
+            price2.innerHTML = `${price} so'm`;
+        });
+    })
+
+    function notify(message, type = 'success') {
+        // Container element
+        const container = document.getElementById('notifications-container');
+
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification notify-${type}`;
+        notification.innerHTML = `
+        <p>${message}</p>
+        <a href="javascript:" class="delete">
+<svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 384 512"><path fill="#fff" d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
+</a>
+    `;
+
+        // Append to container
+        container.appendChild(notification);
+
+        // Auto-remove after 5 seconds
+        setTimeout(() => notification.remove(), 7000);
+
+        // Remove on click
+        notification.querySelector('.delete').addEventListener('click', () => {
+            notification.remove();
+        });
+    }
+
+    document.getElementById('orderForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        let form = event.target;
+        let formData = new FormData(form);
+
+        let errorClientNameEl = document.getElementById('error_client-name');
+        let errorClientPhoneEl = document.getElementById('error_client-phone');
+        let btnSubmit = document.getElementById('btnSubmit');
+
+        function showError(el, message) {
+            el.style.display = 'block';
+            el.innerHTML = message;
+        }
+
+        function hideError(el) {
+            el.style.display = 'none';
+        }
+
+        btnSubmit.disabled = true;
+        btnSubmit.classList.add('--loading');
+        fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Object.fromEntries(formData))
+        })
+            .then(async response => {
+                btnSubmit.disabled = false;
+                btnSubmit.classList.remove('--loading');
+                let data = await response.json();
+                if (response.ok) {
+                    window.location.href = `/orders/${data.data.id}/success`;
+
+                    var price = document.getElementById('productPrice').getAttribute('data-price');
+                    fbq('track', 'AddToCard', {
+                        content_ids: ['3977'],
+                        content_type: 'product',
+                        value: price,
+                        currency: "UZS",
+                        content_name: 'Krossovkalar yoz, bahor va kuz uchun',
+                        content_category: 'Krossovkalar va kedalar',
+                        quantity: 1,
+                        brand: 'Jonik Xitoy',
+                        variant: '41',
+                        fbc: getCookie('_fbc'),
+                        fbp: getCookie('_fbp'),
+                    });
+                } else {
+                    const nameErrorMessage = data.errors && data.errors['client_full_name'] ? data.errors['client_full_name'][0] : '';
+                    const phoneErrorMessage = data.errors && data.errors['customer_phone'] ? data.errors['customer_phone'][0] : '';
+
+                    if (nameErrorMessage) {
+                        showError(errorClientNameEl, nameErrorMessage);
+                    } else {
+                        hideError(errorClientNameEl);
+                    }
+
+                    if (phoneErrorMessage) {
+                        showError(errorClientPhoneEl, phoneErrorMessage);
+                    } else {
+                        hideError(errorClientPhoneEl);
+                    }
+                    if (response.status !== 422) {
+                        notify(data.message || data.error, "error");
+                    }
+                }
+
+            })
+
+            .catch(error => {
+                btnSubmit.disabled = false;
+                btnSubmit.classList.remove('--loading');
+                notify(error.message, "error");
+            });
+    });
+
+</script>
+
+<script>
+    function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+
+    window.onload = function () {
+        const searchResultEl = document.getElementById("mainSearchResult");
+        const inputEl = document.getElementById("siteSearchInput");
+
+        if (inputEl && searchResultEl) {
+            console.log("Input элемент найден:", inputEl);
+
+            const handleSearch = debounce(function (e) {
+                const value = e.target.value;
+                console.log("Поисковый запрос:", value);
+
+                if (value.length !== 1) {
+                    fetch(`/search?search=${value}`)
+                        .then(response => response.text())
+                        .then(html => {
+                            searchResultEl.innerHTML = html;
+                        })
+                        .catch(error => {
+                            console.error("Ошибка при запросе:", error);
+                        });
+                } else {
+                    searchResultEl.innerHTML = "";
+                }
+            }, 500);
+
+            inputEl.addEventListener("input", handleSearch);
+        } else {
+            console.error("Элементы формы не найдены!");
+        }
+    };
+</script>
+
+<script>(function (a, m, o, c, r, m) {
+    a[m] = {
+        id: "417198",
+        hash: "beab4fa8cfc42837bc68a73e29572e993980961e84a18e92d5e52ee710e47c70",
+        locale: "ru",
+        inline: true,
+        setMeta: function (p) {
+            this.params = (this.params || []).concat([p])
+        }
+    };
+    a[o] = a[o] || function () {
+        (a[o].q = a[o].q || []).push(arguments)
+    };
+    a[o + 'Config'] = a[o + 'Config'] || {};
+    a[o + 'Config'].hidden = !0;
+    var d = a.document, s = d.createElement('script');
+    s.async = true;
+    s.id = m + '_script';
+    s.src = 'https://gso.amocrm.ru/js/button.js';
+    d.head && d.head.appendChild(s)
+}(window, 0, 'amoSocialButton', 0, 0, 'amo_social_button'));</script>
+
+<script>
+    window.amoSocialButtonConfig = {
+        hidden: false, // скрыть кнопку при загрузке страницы
+        color: '#000', // изменить цвет кнопки через, проигнорирует цвет настроенный в amoCRM
+
+        onlinechat: {
+            mode: 'widget', // еще может быть 'frame', об этом ниже
+            user_id: '', // id пользователя онлайн-чата (необязательный параметр)
+
+            locale: {
+                extends: "ru",
+                compose_placeholder: "Savolingizni yozing...",
+            },
+
+            theme: {
+                header: true,
+            },
+        },
+    };
+</script>
+
+<style>
+    .amo-button-holder.amo-horisontal {
+        position: fixed !important;
+        right: 30px !important;
+        bottom: 50px !important;
+    }
+</style>
+
+
+</body>
+</html>

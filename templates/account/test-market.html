@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>100k.uz Market</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Header */
+        .header {
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .header-left h1 {
+            font-family: Georgia;
+            font-size: 24px;
+        }
+
+        .header-nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .header-nav a.active {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .header-user {
+            font-size: 24px;
+        }
+
+        /* Banner */
+        .banner {
+            background-color: #009fe3;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Filters */
+        .filters {
+            padding: 10px 20px;
+        }
+
+        .filters h2 {
+            margin-bottom: 10px;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        select, input[type="text"] {
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .tag.active {
+            background-color: black;
+            color: white;
+        }
+
+        /* Product Cards */
+        .product-list {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .product-card h3 {
+            color: red;
+            font-size: 16px;
+        }
+
+        .product-card .info {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .product-card .info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            width: 400px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div class="header-left"><h1>100k.uz</h1></div>
+    <div class="header-nav">
+        <a href="#">Dashboard</a>
+        <a href="#" class="active">Market</a>
+        <a href="#">Oqim</a>
+        <a href="#">Statistika</a>
+        <a href="#">To'lov</a>
+    </div>
+    <div class="header-user">👤</div>
+</div>
+
+<!-- Banner -->
+<div class="banner">
+    Maxsulot reklamasini olish uchun <a href="#" style="color:yellow">@yuzkabot</a> telegram botga ulaning.
+</div>
+
+<!-- Filters -->
+<div class="filters">
+    <h2>Hozirda sotuvda bor mahsulotlar</h2>
+    <div class="filter-row">
+        <select>
+            <option>Sotuvchini tanlang</option>
+            <option>Jonik Xitoy</option>
+            <option>Shoxjahon Market</option>
+        </select>
+        <input type="text" placeholder="Izlash...">
+        <button class="search-btn">Izlash</button>
+    </div>
+    <div class="tags">
+        <div class="tag active">Yangi</div>
+        <div class="tag">TOP ⭐️</div>
+        <div class="tag">Zaxira ⬆️</div>
+        <div class="tag">Yuqori Sotuv %</div>
+        <div class="tag">Elektronika</div>
+        <div class="tag">Maishiy texnika</div>
+        <div class="tag">Kiyim</div>
+        <div class="tag">Poyabzallar</div>
+    </div>
+</div>
+
+<!-- Product Cards -->
+<div class="product-list">
+    <!-- CARD 1 -->
+    <div class="product-card">
+        <img src="https://via.placeholder.com/300x200?text=Chiroq">
+        <h3>Universal protativ chiroq</h3>
+        <div class="info">99000 so'm <span style="color:gray;">Reklama</span></div>
+        <div class="info"><b>To'lov:</b> 20000 so'm</div>
+        <div class="info"><b>Sotuvchi:</b> <a href="#">Jonik Xitoy</a></div>
+        <div class="info">Zaxirada: <span style="color:green;">3638 ta</span></div>
+        <div class="info">Sotilish foizi: <span style="color:green;">27%</span></div>
+        <div class="info"><b>Reklama posti</b></div>
+        <button class="button open-modal" data-title="Universal protativ chiroq" data-bonus="20000">Oqim yaratish
+        </button>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="product-card">
+        <img src="https://via.placeholder.com/300x200?text=Lyustra">
+        <h3>Ventilyatorli LED lyustra</h3>
+        <div class="info">177000 so'm</div>
+        <div class="info"><b>To'lov:</b> 30000 so'm</div>
+        <div class="info"><b>Sotuvchi:</b> <a href="#">Shoxjahon Market</a></div>
+        <div class="info">Zaxirada: 40 ta / 161 ta</div>
+        <div class="info">Sotilish foizi: 0%</div>
+        <button class="button open-modal" data-title="Ventilyatorli LED lyustra" data-bonus="30000">Oqim yaratish
+        </button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="oqimModal">
+    <div class="modal-content">
+        <span class="close" id="modalCloseBtn">&times;</span>
+        <h3 id="modalTitle">Oqim yaratish</h3>
+        <form>
+            <label>Oqim nomi <span style="color:red;">*</span></label><br>
+            <input type="text" style="width: 100%; padding: 8px;" required><br><br>
+            <label><input type="checkbox"> Buyurtmalarni operatorsiz qabul qilish?</label><br><br>
+            <p style="color:red;">Bepul yetkazish butunlay olib tashlandi!</p>
+            <button type="submit" class="button">Oqim yaratish</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById("oqimModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const closeBtn = document.getElementById("modalCloseBtn");
+    const openBtns = document.querySelectorAll(".open-modal");
+
+    // Modal ochish
+    openBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const title = btn.getAttribute("data-title");
+            const bonus = btn.getAttribute("data-bonus");
+            modalTitle.innerText = `${title} - ${bonus} bonus`;
+            modal.style.display = "block";
+        });
+    });
+
+    // Modal yopish
+    closeBtn.onclick = () => {
+        modal.style.display = "none";
+    };
+
+    // Tashqarisiga bosilsa ham yopilsin
+    window.onclick = (e) => {
+        if (e.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+</script>
+</body>
+</html>

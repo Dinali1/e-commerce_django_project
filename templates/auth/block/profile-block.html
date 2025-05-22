@@ -1,0 +1,50 @@
+{% extends 'account/profile.html' %}
+{% block profile %}
+	<form action="{% url 'profile'  request.user.pk %}" method="post">
+    {% csrf_token %}
+    <div class="main">
+    <h1>Shaxsiy ma'lumotlar</h1>
+
+    <div class="profile-card">
+        <div style="display: flex; align-items: center;">
+            <div class="profile-img"></div>
+            <button class="upload-btn">📸 Rasmni o‘zgartirish</button>
+        </div>
+
+    </div>
+
+    <div class="form-section">
+        <div class="form-row">
+            <input type="email" value="{{ request.user.email }}" readonly>
+            <input type="email" value="{{ request.user.email }}" readonly>
+        </div>
+        <div class="form-row">
+            <input type="text" placeholder="Ismingiz" value="{{ request.user.first_name }}" name="first_name">
+            <input type="text" placeholder="Familiya" value="{{ request.user.last_name }}" name="last_name">
+        </div>
+        <div class="form-row">
+               Viloyat
+                        <select name="region" class="form-control" id="id_region">
+                            <option value="Viloyatni tanlang" selected>Viloyatni tanlang</option>
+                            {% for region in regions %}
+                                <option value="{{ region.pk }}" {% if request.user.district.region.pk == region.pk %}
+                                        selected {% endif %}>{{ region.name }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                    <div class="col-lg-6">
+                        Tuman/Shaxar
+                        <select name="district" class="form-control" id="id_district">
+                            {% if request.user.district %}
+                                <option value="Viloyatni tanlang">{{ request.user.district.name }}</option>
+                            {% else %}
+                                <option selected>Tuman/Shahar tanlang</option>
+                            {% endif %}
+                        </select>
+        </div>
+        <button class="save-btn">O‘zgarishlarni saqlash</button>
+    </div>
+</div>
+</form>
+{% endblock %}

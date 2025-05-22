@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Botni Biriktirish</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #f9fafb;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #f1f5f9;
+            padding: 20px;
+            height: 100vh;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .sidebar li.active, .sidebar li:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .card .icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .card h2 {
+            margin-top: 20px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .card ol {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .card input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card button {
+            background-color: #facc15;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .card button:hover {
+            background-color: #eab308;
+        }
+
+        .image-preview img {
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <h2>100k.uz</h2>
+    <ul>
+        <li>Shaxsiy ma’lumotlar</li>
+        <li>Telefon raqamni o‘zgartirish</li>
+        <li>Parolni o‘zgartirish</li>
+        <li class="active">Telegram bilan bog‘lash</li>
+        <li>Target uchun API</li>
+    </ul>
+</div>
+
+<div class="main-content">
+    <h1>Telegram botni biriktirish</h1>
+    <div class="card">
+        <div class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"/>
+        </div>
+        <h2><span class="bold">Telegram</span> botni biriktirish</h2>
+        <ol>
+            <li><strong>Telegram profilingizni (username)</strong> kiriting</li>
+            <li><strong>Biriktirishni</strong> bosing</li>
+            <li>Telegramda <strong>Startni</strong> bosing yoki <code>/start</code> komandasini yuboring</li>
+        </ol>
+
+        <label for="username">Telegram link:</label>
+        <input type="text" id="username" placeholder="username">
+        <button onclick="linkTelegram()">Biriktirish</button>
+
+        <div class="image-preview">
+            <img src="https://i.imgur.com/QsC7KoD.png" alt="Telegram user example">
+        </div>
+    </div>
+</div>
+
+<script>
+    function linkTelegram() {
+        const username = document.getElementById('username').value.trim();
+        if (!username) {
+            alert('Iltimos, Telegram username kiriting!');
+            return;
+        }
+        alert(`Telegram foydalanuvchi @${username} muvaffaqiyatli biriktirildi!`);
+    }
+</script>
+</body>
+</html>

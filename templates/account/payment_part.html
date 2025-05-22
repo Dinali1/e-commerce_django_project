@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Mening Hisobim</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9f9;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .panel {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .panel h3 {
+            margin-top: 0;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .panel p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+
+        .panel strong {
+            font-weight: bold;
+        }
+
+        .panel input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .panel button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .panel button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .empty {
+            padding: 40px;
+            text-align: center;
+            color: #666;
+        }
+
+        .pagination {
+            font-size: 14px;
+            color: #333;
+            margin-top: 8px;
+        }
+
+        .pagination-controls {
+            text-align: right;
+            font-size: 18px;
+            padding-top: 5px;
+        }
+
+        .pagination-controls span {
+            cursor: pointer;
+            padding: 0 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Hisob paneli -->
+    <div class="panel">
+        <h3>Mening hisobim</h3>
+        <p>ID raqamingiz: <strong>6216673</strong></p>
+        <hr>
+        <p>Asosiy balansda: {{ request.user.balance }} so'm </p>
+        <hr>
+        <p>To'lab berildi: 0 so'm</p>
+    </div>
+
+    <!-- To'lov formasi -->
+    <form action="{% url 'payment' %}" method="post">
+        {% csrf_token %}
+        <div class="panel">
+        <h3>To'lovga sorov berish formasi</h3>
+        <input type="text" placeholder="Karta raqamingizni kiriting" name="card_number" maxlength="16">
+        <input type="text" placeholder="Summani kiriting" name="amount">
+        <input type="hidden" name="user" value="{{ request.user.id }}">
+        <button type="submit">Tasdiqlash</button>
+    </div>
+    </form>
+
+</div>
+
+<!-- Jadval -->
+<table>
+    <thead>
+    <tr>
+        <th>Sana</th>
+        <th>Hisob Raqam</th>
+        <th>Summa</th>
+        <th>Holat</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% if payments %}
+            {% for payment in payments %}
+                <tr>
+            	<td>{{ payment.created_at|date:"Y-m-d H:i" }}</td>
+                <td>************ {{ payment.card_number|slice:"-4:" }}</td>
+                <td>{{ payment.amount }}</td>
+                <td>{{ payment.payment_status }}</td>
+            {% endfor %}
+            {% if payment.message %}
+                <td>{{ payment.message }}</td>
+            {% endif %}
+                </tr>
+
+        	{% else  %}
+            <td colspan="5" class="empty">
+            <img src="https://img.icons8.com/ios/50/000000/print.png" alt="print icon"
+                 style="opacity: 0.3; width: 50px;"><br>
+            Ma'lumot topilmadi
+        </td>
+
+        {% endif %}
+    </tbody>
+
+</table>
+
+<div class="pagination">
+    Ko'rsatilgan ma'lumotlar: - jami 0
+    <div class="pagination-controls">
+        <span>&lsaquo;</span> 1 <span>&rsaquo;</span>
+    </div>
+</div>
+
+</body>
+</html>

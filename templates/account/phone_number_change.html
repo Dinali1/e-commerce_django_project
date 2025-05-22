@@ -1,0 +1,24 @@
+{% extends 'account/profile.html' %}
+{% block profile %}
+    <form action="{% url 'phone-num'  request.user.pk %}" method="post">
+        {% csrf_token %}
+        <div class="main">
+            <h1>Telfon Raqam o'zgartirish</h1>
+        </div>
+
+        <div style="width: 300px; margin-left: 600px">
+            <div class="form-section">
+                <div class="form-row">
+                    <input type="text" placeholder="Telfon raqamingiz" name="phone_number">
+                </div>
+                <button type="submit" class="save-btn">O‘zgarishlarni saqlash</button>
+            </div>
+        </div>
+        {#    <div class="form-section">#}
+        {#        <div class="form-row">#}
+        {#            <input type="text" placeholder="Telfon raqamingiz"  name="phone_number">#}
+        {#        </div>#}
+        {#        <button class="save-btn">O‘zgarishlarni saqlash</button>#}
+        {#    </div>#}
+    </form>
+{% endblock %}
