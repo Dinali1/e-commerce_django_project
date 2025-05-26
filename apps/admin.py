@@ -71,6 +71,11 @@ class AccountAdmin(admin.ModelAdmin):
 class QueryAdmin(admin.ModelAdmin):
     list_display = ('description', 'stream', 'created_at')
 
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    pass
+
+
 
 
     

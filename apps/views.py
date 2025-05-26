@@ -383,6 +383,57 @@ class PaymentCreateView(CreateView):
             messages.error(self.request, error)
         return super().form_invalid(form)
 
+class OperatorListView(ListView):
+    queryset = Order.objects.all()
+    template_name = 'operator/operator-page.html'
+    context_object_name = 'orders'
+
+    def post(self, request):
+        category_id = request.POST.get('category_id')
+        region_id = request.POST.get('region_id')
+        query = self.get_queryset()
+
+        if category_id:
+            query = query.filter(product__category_id=category_id)
+
+        if region_id:
+            query = query.filter(region_id=region_id)
+        context = {
+                "status" : Order.StatusType.values,
+                "categories" : Category.objects.all(),
+                "regions" : Region.objects.all(),
+                "orders" : query
+            }
+        return render(request, 'operator/operator-page.html', context)
+    def get_queryset(self):
+        status = self.request.GET.get('status')
+        query = super().get_queryset()
+        return query.filter(status=status)
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['status'] = Order.StatusType.values
+        data['regions'] = Region.objects.all()
+        data['categories'] = Category.objects.all()
+        return data
+
+class OrderListView(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('send_email')
+    queryset = Order.objects.all()
+    template_name = "order/order-list.html"
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        query = super().get_queryset()
+        return query.filter(user=self.request.user)
+
+
+class RequestTemplateView(TemplateView):
+    template_name = 'order/request_order.html'
+
+
+
+
 
 
 

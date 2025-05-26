@@ -1,7 +1,11 @@
+import os
 from os.path import join
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 from os import getenv
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.humanize',
     'apps',
+    'parler'
 
 ]
 
@@ -43,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = 'root.urls'
@@ -109,12 +115,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
 
@@ -140,3 +146,31 @@ REDIS_PORT = 6379
 REDIS_DB = 0
 
 LOGIN_URL = 'login'
+
+LANGUAGES = [
+    ('uz', _('Uzbek')),
+    ('en', _('English')),
+    ('ru', _('Russian')),
+    ('ar', _('Arabic')),
+    ('ko', _('Korean')),
+]
+
+# ===============multiple language===========
+
+LOCALE_PATHS = [
+    join(BASE_DIR, 'locale'),
+]
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'uz'},
+        {'code': 'ru'},
+        {'code': 'en'},
+        {'code': 'ko'},
+        {'code': 'ar'},
+    ),
+    'default': {
+        'fallback': 'uz',
+        'hide_untranslated': False,
+    }
+}

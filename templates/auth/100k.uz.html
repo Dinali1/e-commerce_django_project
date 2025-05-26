@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="uz">
 <head>
@@ -71,6 +72,24 @@
             return urlParams.get('fbclid');
         }
     </script>
+    <style>
+        .language-switcher {
+            {#margin: 20px auto;#}
+            text-align: center;
+        }
+
+        .language-switcher select {
+            width: 70px;
+            padding: 5px 15px 5px 10px;
+            font-size: 16px;
+            color: #333;
+            background: none;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+
+    </style>
     <noscript><img height="1" width="1" style="display:none"
                    src="https://www.facebook.com/tr?id=1910080826109583&ev=PageView&noscript=1"
     /></noscript>
@@ -137,16 +156,16 @@
 
                     <div class="dropdown-menu mt-3 dropdown-menu-right">
                         <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
-                           href="https://100k.uz/pages/contacts">Aloqa uchun</a>
+                           href="https://100k.uz/pages/contacts">{% trans "Aloqa uchun" %}</a>
 
                         <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
-                           href="https://admin.100k.uz">Profil</a>
+                           href="https://admin.100k.uz">{% trans "Profil" %}</a>
 
                         <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
-                           href="https://admin.100k.uz">Adminlar uchun</a>
+                           href="https://admin.100k.uz">{% trans "Adminlar uchun" %}</a>
 
                         <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
-                           href="https://admin.100k.uz">Sozlamalar</a>
+                           href="https://admin.100k.uz">{% trans "Sozlamalar" %}</a>
                     </div>
                 </div>
             </div>
@@ -198,6 +217,8 @@
                 </form>
 
 
+
+
             </div>
             <div class="d-none d-md-block col-sm-1"></div>
             <div class="col-auto d-none d-md-block">
@@ -206,28 +227,34 @@
                     <div class="d-flex align-items-center">
                         <a href="{% url 'signin' %}" class="d-inline-block p-2">
                             <i class="fa fa-user mr-2"></i>
-                            <span>Mening kabinetim</span>
+                            <span>{% trans "Mening kabinetim " %}</span>
                         </a>
                     </div>
                 </div>
                 <!-- /user -->
             </div>
-            <div class="col-auto">
+           <div class="col-auto">
                 <div class="dropdown px-2">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-globe mr-1"></i>
-                        <span>Uz</span>
-                    </a>
-
-                    <div class="dropdown-menu mt-3 dropdown-menu-right">
-                        <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
-                           href="https://100k.uz/change-language?lang=uz">Uz</a>
-
-                        <a class="dropdown-item header_navbar_lang_menu_dropdown_item" style="color: inherit"
-                           href="https://100k.uz/change-language?lang=ru">Ru</a>
+                    <div class="language-switcher">
+                        <select id="langSwitcher">
+                            <option value="">{{ request.LANGUAGE_CODE|title  }}</option>
+                            <option value="uz">Uzbek</option>
+                            <option value="en">English</option>
+                            <option value="ru">Русский</option>
+                            <option value="ko">Korean</option>
+                            <option value="ar">Arabic</option>
+                        </select>
                     </div>
+
+                    <!-- Hidden form -->
+                    <form id="langForm" action="{% url 'set_language' %}" method="post" style="display: none;">
+                        {% csrf_token %}
+                        <input type="hidden" name="language" id="langInput">
+                    </form>
+
                 </div>
             </div>
+
         </div>
     </div>
 </header>
@@ -291,7 +318,7 @@
             <div class="col-lg col-sm-6">
                 <ul class="nav flex-column">
                     <li>
-                        <a href="/profile" class="nav-link">Mening kabinetim </a>
+                        <a href="/profile" class="nav-link">{% trans "Mening kabinetim" %} </a>
                     </li>
                 </ul>
             </div>
@@ -299,7 +326,7 @@
             <div class="col-lg col-sm-6">
                 <ul class="nav flex-column">
                     <li>
-                        <a href="{% url 'about' %}" class="nav-link">Biz haqimizda</a>
+                        <a href="{% url 'about' %}" class="nav-link">{% trans "Biz haqimizda" %}</a>
                     </li>
                 </ul>
             </div>
@@ -307,7 +334,7 @@
             <div class="col-lg col-sm-6">
                 <ul class="nav flex-column">
                     <li>
-                        <a href="https://100k.uz/pages/contacts" class="nav-link">Aloqa uchun</a>
+                        <a href="https://100k.uz/pages/contacts" class="nav-link">{% trans "Aloqa uchun" %}</a>
                     </li>
                 </ul>
             </div>
@@ -315,8 +342,8 @@
             <div class="col-lg col-sm-6">
                 <ul class="nav flex-column">
                     <li>
-                        <a href="https://100k.uz/pages/privacy-policy" target="_blank" class="nav-link">Ommaviy
-                            oferta</a>
+                        <a href="https://100k.uz/pages/privacy-policy" target="_blank" class="nav-link">{% trans "Ommaviy
+                            oferta" %}</a>
                     </li>
                 </ul>
             </div>
@@ -430,6 +457,11 @@
             },
         },
     };
+    document.getElementById("langSwitcher").addEventListener("change", function () {
+        document.getElementById("langInput").value = this.value;
+        document.getElementById("langForm").submit();
+    });
+
 </script>
 
 <style>

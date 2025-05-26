@@ -7,6 +7,7 @@ from django.db.models import Model, ImageField, CharField, DecimalField, SmallIn
     DateTimeField, CASCADE, BooleanField, EmailField, TextChoices, FileField, IntegerField, SlugField, \
     PositiveIntegerField
 from django.utils.text import slugify
+from parler.models import TranslatableModel, TranslatedFields
 
 
 # Create your models here.
@@ -28,14 +29,28 @@ class BaseSlug(Model):
         super().save(*args, **kwargs)
 
 
-class Category(BaseSlug):
+
+class Category(TranslatableModel):
     class Meta:
         verbose_name_plural = 'categories'
-    image = ImageField(upload_to='categories', null=True, blank=True)
     name = CharField(max_length=255)
+    image = ImageField(upload_to='categories', null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        name = self.safe_translation_getter('name', language_code='uz')
+        slug = slugify(name)
+
+        if Category.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+            slug_count = Category.objects.filter(slug__startswith=slug).exclude(pk=self.pk).count()
+            slug = f"{slug}-{slug_count + 1}"
+
+        self.slug = slug
+        super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return self.safe_translation_getter('name', any_language=True) or "No name"
+
+
 
 
 class Product(BaseSlug):
@@ -126,6 +141,11 @@ class CustomerUser(UserManager):
         return user
 
 class User(AbstractUser):
+    class RoleType(TextChoices):
+        SELLER = 'seller', "Seller"
+        OPERATOR = 'operator', "Operator"
+        ADMIN = 'admin', "Admin"
+        DELIVER = 'deliver', "Deliver"
     email = EmailField(max_length=255, unique=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -135,6 +155,7 @@ class User(AbstractUser):
     district = ForeignKey('apps.District', on_delete=CASCADE, related_name='users', null=True, blank=True)
     image = ImageField(upload_to='users', null=True, blank=True)
     balance = DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    role = CharField(max_length=255, choices=RoleType.choices, default=RoleType.SELLER)
 
 class Stream(Model):
     name = CharField(max_length=255)
@@ -143,6 +164,7 @@ class Stream(Model):
     product = ForeignKey('apps.Product', on_delete=CASCADE, related_name='streams')
     user = ForeignKey('apps.User', on_delete=CASCADE, related_name='streams')
     created_at = DateTimeField(auto_now_add=True)
+    discount_price = DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
 
 
@@ -176,7 +198,7 @@ class Query(Model):
     stream = ForeignKey('apps.Stream', on_delete=CASCADE, related_name='queries')
 
 
-class Order(Model):
+class   Order(Model):
     class StatusType(TextChoices):
         NEW = 'new', 'New'
         ACCEPTED = 'accepted', 'Accepted'
@@ -195,6 +217,15 @@ class Order(Model):
     region = ForeignKey('apps.Region', on_delete=CASCADE, related_name='orders')
     total = DecimalField(max_digits=10, decimal_places=2)
     quantity = IntegerField(default=1)
+    comment = TextField(null=True, blank=True)
+    deliver_time = DateTimeField(auto_now_add=False, null=True, blank=True)
+    first_name = CharField(max_length=255)
+
+    @property
+    def discount_price(self):
+        price = float(self.product.discount_price) - (float(self.stream.discount_price)  if self.stream else 0)
+        return price
+
 
 class Payment(Model):
     class StatusType(TextChoices):

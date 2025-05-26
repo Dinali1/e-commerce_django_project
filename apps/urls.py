@@ -27,6 +27,10 @@ urlpatterns = [
     path('statistics', Statistics.as_view(), name='statistics'),
     path('chart/', chart_view, name='chart'),
     path('payment', PaymentCreateView.as_view(), name='payment'),
+    path('operator/', OperatorListView.as_view(), name='operator'),
+    path("order/list", OrderListView.as_view(), name="order-list"),
+    path('request/list', RequestTemplateView.as_view(), name="request-list"),
 
 
 ]
+
